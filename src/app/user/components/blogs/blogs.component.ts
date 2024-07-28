@@ -12,6 +12,12 @@ export class BlogsComponent implements OnInit {
   name = JSON.parse(sessionStorage.getItem("logginedInUser")!).username;
   blogInfo:any;
   blogTitlePicture:any;
+  plainContent:any;
+  order: string = 'asc';
+  totalPages: number = 0;
+  currentPage: number = 1;
+  limit: number = 10;
+
 
   constructor(
     private router:Router,
@@ -29,13 +35,24 @@ export class BlogsComponent implements OnInit {
       
     })
 
-    this.blogServ.getMyBlogs(this.id).subscribe((res:any)=>{
+    this.blogServ.getMyBlogs(this.id,this.order, this.currentPage, this.limit).subscribe((res:any)=>{
       console.log(res);
       this.blogInfo = res
       this.convertPlaintext()
     })
   }
-  plainContent:any;
+
+  onSortChange(order: string): void {
+    this.order = order;
+    this.getMyBlogs();
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.getMyBlogs();
+  }
+
+ 
   convertPlaintext(){
       for(let i=0;i< this.blogInfo.data.length;i++){
         this.plainContent =  this.blogInfo.data[i].content.replace(/<[^>]*>/g, '');

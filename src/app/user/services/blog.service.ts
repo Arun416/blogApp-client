@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -18,11 +18,18 @@ export class BlogService {
   }
 
 
-  getMyBlogs(userId:string){
+  getMyBlogs(userId:string,order: string, page: number, limit: number){
     var reqHeader = new HttpHeaders({ 
       'Authorization': 'Bearer '+ this.auth_token
    });
-    return this.http.get(environment.apiURL+"blog/myblogs/"+userId,{headers:reqHeader})
+
+   let params = new HttpParams();
+  //  params = params.append("sortBy",'createdAt');
+   params = params.append("order", order);
+   params = params.append("page", page.toString());
+   params = params.append("limit", limit.toString());
+   
+    return this.http.get(environment.apiURL+"blog/myblogs/"+userId,{params: params,headers:reqHeader})
   }
 
   getBlogDetail(blogId:string){

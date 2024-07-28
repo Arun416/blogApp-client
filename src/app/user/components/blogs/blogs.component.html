@@ -4,8 +4,17 @@
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <div class="row">
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary" routerLink="/user/create">CREATE BLOG</button>
+                        
+                        <div class="d-flex flex-row gap-2 justify-content-end">
+                            <div> <select id="order" class="form-control" [(ngModel)]="order" (change)="onSortChange(order)">
+                                <option value="" disabled selected>Filter by Order</option>
+                                <option value="asc">Asc</option>
+                                <option value="desc">Desc</option>
+                              </select>
+                            </div>
+                            <div><button class="btn btn-primary" routerLink="/user/create">CREATE BLOG</button>
+                            </div>
+                           
                         </div>
                         <div class="col-sm-6" *ngFor="let myblog of blogInfo?.data">
                             <div class="blog-grid">
