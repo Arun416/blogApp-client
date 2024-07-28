@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row gutters mt-3">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <form [formGroup]="blogFormGroup" (ngSubmit)="onCreateNew(blogFormGroup.value)">
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <h3>Create your Awesome Blog</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <img class="upload-blog-image" [src]="imageSrc!==''? imageSrc: 'assets/blog-placeholder.png'"
+                        
+                        width="400" height="200"/>
+                        <input type="file" #blogImg (change)="onFileSelected($event)"  hidden/>
+                        <div class="d-flex flex-row gap-3 mt-2">
+                            <button class="btn btn-primary text-uppercase fw-bold" (click)="onImageupload()"><i class="fa fa-upload"></i> upload Image</button>
+                            <button class="btn btn-danger text-uppercase fw-bold" (click)="onRemoveupload()"><i class="fa fa-trash"></i> Remove Image</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12"  [ngClass]="{'has-error': submitted && (f['title'].errors?.['title'])}" >
+                        <input type="text" class="form-control form-control-lg" placeholder="Title of Blog"
+                        formControlName="title"/>
+                        <p>
+                            <span class="text-danger" *ngIf="submitted && f['title'].errors?.['required']">Title is required</span>
+                        </p>  
+                    </div>
+                    <div class="col-md-12"  [ngClass]="{'has-error': submitted && (f['content'].errors?.['content'])}">
+                        <ckeditor
+                            [editor]="Editor"
+                            [config]="config"
+                            formControlName="content"
+                            (ready)="onReady($event)"
+                            >
+                        </ckeditor>
+                        <p>
+                            <span class="text-danger" *ngIf="submitted && f['content'].errors?.['required']">content is required</span>
+                        </p>  
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary btn-create-post text-uppercase fw-bold">
+                            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            Create Post</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>

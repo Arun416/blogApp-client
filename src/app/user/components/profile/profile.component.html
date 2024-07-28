@@ -1,0 +1,146 @@
+<!-- 
+<aside class="profile-card">
+
+    <header>
+    
+        <a href="/">
+            <img src="{{userProfilePic}}" />
+        </a>
+        
+        <h1>{{userProfile.first_Name}} {{userProfile.last_Name}}</h1>
+        
+        <h2>Email: {{userProfile.email}}</h2>
+       
+    </header>
+
+    <div class="profile-bio">
+        <p>Contact: {{userProfile.mobile_No}}</p><p>Country: {{userProfile.country}}</p>
+
+        <p>{{userProfile.bio}}</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary">Edit Profile</button>
+    </div>
+</aside>
+ -->
+ <app-navbar></app-navbar>
+
+ <div class="container">
+    <div class="row gutters mt-3">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <div class="account-settings">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <img [src]="imageSrc" class="userProfile" alt="Profile Photo" (click)="onImageClick()">
+                        <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+
+                    </div>
+                    <h5 class="user-name">{{userProfile?.first_Name}} {{userProfile?.last_Name}}</h5>
+                    <h6 class="user-email">{{userProfile?.email}}</h6>
+                    <h6 class="user-email"> {{userProfile?.mobile_No}}, {{userProfile?.country}}</h6>
+                </div>
+                <div class="about">
+                    <h5>About</h5>
+                    <p>{{userProfile?.bio}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card h-100">
+        <div class="card-body">
+            <form [formGroup]="profileFormGroup" (ngSubmit)="onEditProfile(profileFormGroup.value)">
+            <div class="row gutters g-3">
+                <h4>Edit Profile</h4>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mb-2 text-primary">Personal Details</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="firstName">Fist Name</label>
+                        <input type="text" class="form-control" id="firstName" 
+                        placeholder="Enter full name" formControlName="first_Name">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" 
+                        placeholder="Enter full name" formControlName="last_Name">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="eMail">Email</label>
+                        <input type="email" class="form-control" id="eMail" 
+                        placeholder="Enter email ID" formControlName="email">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" 
+                        placeholder="Enter phone number" formControlName="mobile_No">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="dob">Dob</label>
+                        <input type="date" class="form-control" id="date" 
+                        placeholder="dd/mm/YYYY" formControlName="dob">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea type="text" class="form-control" id="bio" 
+                        placeholder="Bio" formControlName="bio" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row gutters g-3 mb-3">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country"
+                         placeholder="Country" formControlName="country">
+                    </div>
+                </div>
+               <!--  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="ciTy">City</label>
+                        <input type="name" class="form-control" id="ciTy" placeholder="Enter City">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="sTate">State</label>
+                        <input type="text" class="form-control" id="sTate" placeholder="Enter State">
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                        <label for="zIp">Zip Code</label>
+                        <input type="text" class="form-control" id="zIp" placeholder="Zip Code">
+                    </div>
+                </div> -->
+            </div>
+            <div class="row gutters ">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="text-right d-flex justify-content-start gap-2">
+                        <button  id="submit" name="submit" class="btn btn-secondary">Cancel</button>
+                        <button  id="submit" name="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div></form>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
